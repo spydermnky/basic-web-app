@@ -40,8 +40,27 @@ export default function QueryProcessor(query: string): string {
     return Math.max(x,y,z).toString();
   }
 
+  const minusMatch = query.match(/What is (\d+) minus (\d+)/);
+  if (minusMatch) {
+    const x: number = parseInt(minusMatch[1]);
+    const y: number = parseInt(minusMatch[2]);
+    return (x-y).toString();
+  }
+
+  const powerMatch = query.match(/What is (\d+) to the power of (\d+)/);
+  if (powerMatch) {
+    const x: number = parseInt(powerMatch[1]);
+    const y: number = parseInt(powerMatch[2]);
+    return (x**y).toString();
+  }
   
-  
+  const threeSumMatch = query.match(/What is (\d+) plus (\d+) plus (\d+) /);
+  if (threeSumMatch) {
+    const x: number = parseInt(threeSumMatch[1]);
+    const y: number = parseInt(threeSumMatch[2]);
+    const z: number = parseInt(threeSumMatch[3]);
+    return (x+y+z).toString();
+  }
 
   return "";
 }
